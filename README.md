@@ -10,4 +10,4 @@ Calico Life Sciences LLC, South San Francisco, USA
 
 All supplementary information related to the paper can be found here.
 
-Supplementary Notes and Figures: 
+Supplementary Notes and Figures: https://github.com/royerlab/hr-lf-mv-SOLS/blob/master/paper/hr_lf_mv_SOLS_Supplementary%20Information.pdf
