@@ -1,0 +1,148 @@
+import java.lang.String;
+import java.text.DecimalFormat;
+import org.micromanager.data.SummaryMetadata;
+import org.micromanager.PropertyMaps;
+
+//acquisition parameter
+pathRoot = "D:/data/20210406_Xiang_fish";
+pathPrefix = "stage_TL100_range500um_step0.31_2um_30ms_view2_interval_30s_10mW_2";
+int num_ch = 2; // real color channel. For interleaved channel acquisition. reduce the step size by n for n-channel imaging. change the step
+int num_view = 1;
+// size in python code as well.
+
+int nrFrames = 1;
+double step = 0.310 * 2; // unit: um
+// for 0.219 um/pixel, we can have 0.3097 * n as step size, res
+double range = 500; // unit: um
+double interval = 30; // unit: s
+int scanMode = 0;  // 0 for raster, 1 for serpantine
+double customOffset = 0; // -260; // unit: um, offset between two views for better coverage
+// negative value shifts the stage to left to focus more on the right side
+
+int nrChannels = 1; // channels include view and channel, todo, add options for sequential channel imaging
+
+// for metadata store
+double angle = 45;  // inciden angle
+double res = 0.439; // xy pixel size
+//double res = 0.219; // xy pixel size
+
+// positive offset value, shifting the view2 towards left
+double alignmentOffset = 280; // unit: um, offset between two views due to alignment
+double galvoOffset = 0; // unit: um, offset between two views due to different galvo values
+double offset = alignmentOffset + galvoOffset + customOffset;
+
+//pre-calculate parameters
+int nrSlices = range / step;
+print("number of slices: " + nrSlices);
+double exposureMs = mmc.getExposure();
+print("exposure time: " + exposureMs);
+port = "COM4";
+double speed = step / exposureMs;
+DecimalFormat df = new DecimalFormat("#.####");
+print("scan range (um): " + range);
+//savePath
+savePath = pathRoot + "/" + pathPrefix;
+savePath = mm.data().getUniqueSaveDirectory(savePath);
+
+// store data
+store = mm.data().createMultipageTIFFDatastore(savePath, true, true);
+mm.displays().createDisplay(store);
+
+// SummaryMetadata
+summary = mm.data().getSummaryMetadataBuilder();
+summary.channelGroup("Channels");
+String[] axisOrder = {"z", "channel", "time", "position"};
+summary.axisOrder(axisOrder);
+coorbuilder = mm.data().getCoordsBuilder().time(nrFrames).stagePosition(1).z(nrSlices).channel(nrChannels);
+summary.intendedDimensions(coorbuilder.build());
+summary.zStepUm(step*num_ch); // real step in multicolor imaging is step * num_ch
+myPropertyMap = PropertyMaps.builder().putInteger("angle", angle).putDouble("res", res).putInteger("view", num_view).putInteger("channel", num_ch).build();
+summary.userData(myPropertyMap);
+store.setSummaryMetadata(summary.build());
+       
+// scan mode; 0 for raster, 1 for serpantine
+message = "scan f=" + Integer.toString(scanMode);
+mmc.setSerialPortCommand(port,message,"\r");
+print(message);
+		
+//set backlash
+message = "backlash x=0.04 y=0.0";
+print("set backlash: " + message);
+mmc.setSerialPortCommand(port,message,"\r");
+
+//set speed
+message = "speed x=" + df.format(speed);
+print("set speed to scan: " + message);
+mmc.setSerialPortCommand(port,message,"\r");
+
+// set current position to zero
+message = "zero";
+mmc.setSerialPortCommand(port,message,"\r");
+
+// Camera trigger settings
+mmc.setProperty("HamamatsuHam_DCAM", "TRIGGER SOURCE", "EXTERNAL");
+String propTRIG = mmc.getProperty("HamamatsuHam_DCAM", "TRIGGER SOURCE");
+print("TRIGGER SOURCE:" + propTRIG);
+
+mmc.setProperty("HamamatsuHam_DCAM", "TRIGGER DELAY", "0.0");
+String propTRIG = mmc.getProperty("HamamatsuHam_DCAM", "TRIGGER DELAY");
+print("TRIGGER DELAY:" + propTRIG);
+
+// start acquistion
+for (int f=0; f<nrFrames; f++){
+	for(int ch=0; ch<nrChannels; ch++){	
+//		mmc.setConfig("Channels", channelsStage[ch]);
+
+		//acquire data while scanning move 400 um relative
+		if (ch==0) {
+			message = "scanr x=0.0 y=" + range / 1000;
+			print("scan range: " + message);
+			mmc.setSerialPortCommand(port,message,"\r");
+			message = "scanv x=0.0 y=0.0";
+			mmc.setSerialPortCommand(port,message,"\r");
+		}
+		else {
+			message = "scanr x=" + df.format((-offset) / 1000) + " y=" + df.format((-offset + range) / 1000);
+			print("scan range: " + message);
+			mmc.setSerialPortCommand(port,message,"\r");
+			message = "scanv x=0.0 y=0.0";
+			mmc.setSerialPortCommand(port,message,"\r");
+		}
+		
+		mmc.startSequenceAcquisition(nrSlices, 0, true);
+		builder = mm.data().getCoordsBuilder().z(0).channel(0).stagePosition(0);
+		
+		// start scan
+		message = "scan";
+		mmc.setSerialPortCommand(port,message,"\r");
+		
+		slice=0;
+		
+		while (mmc.getRemainingImageCount() > 0 || mmc.isSequenceRunning(mmc.getCameraDevice())) {
+		   if (mmc.getRemainingImageCount() > 0) {
+		   
+		      tagged = mmc.popNextTaggedImage();
+		      image = mm.data().convertTaggedImage(tagged,builder.time(f).channel(ch).z(slice).build(), null);
+		      store.putImage(image);
+			   slice++;
+		   }
+		   else {
+		      // Wait for another image to arrive.
+		      mmc.sleep(Math.min(.5 * exposureMs, 20));
+		   }
+		}	
+		mmc.stopSequenceAcquisition();
+
+		mmc.sleep(Math.max(200, interval * 1000)); //wait until stage is back to original position
+	}
+	
+}
+
+mmc.setProperty("HamamatsuHam_DCAM", "TRIGGER SOURCE", "INTERNAL");
+
+//set default speed
+message = "speed x=10 y=10";
+mmc.setSerialPortCommand(port,message,"\r");
+
+mm.displays().manage(store);
+
