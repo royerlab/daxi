@@ -1,4 +1,4 @@
-## hr-lf-mv-SOLS
+## DaXi
 
 High-Resolution, Large Imaging Volume, and Multi-View Single Objective Light-Sheet Microscopy
 
