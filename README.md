@@ -7,7 +7,9 @@ sheet microscopy method.
 
 High-Resolution, Large Imaging Volume, and Multi-View Single Objective Light-Sheet Microscopy
 
-Bin Yang1*, Merlin Lange1, Alfred Millett-Sikking2, Ahmet Can Solak1, Shruthi Vijaykumar1, Wanpeng Wang3, Hirofumi Kobayashi1, Matthew N Mccarroll4, Lachlan W Whitehead5;6, Reto P Fiolka7;8, Thomas B. Kornberg3, Andrew G York2, Loic A. Royer1*
+Bin Yang1*, Merlin Lange1, Alfred Millett-Sikking2, Ahmet Can Solak1, Shruthi Vijaykumar1, Wanpeng Wang3, 
+Hirofumi Kobayashi1, Matthew N Mccarroll4, Lachlan W Whitehead5;6, Reto P Fiolka7;8, Thomas B. Kornberg3, 
+Andrew G York2, Loic A. Royer1*
 
 1 Chan Zuckerberg Biohub, San Francisco, USA
 
@@ -54,3 +56,10 @@ Code is only tested on Windows 10 operating system.
 Micro-Manager Version is 2.0-gamma.
 
 Ptyhon version 3.7.
+
+## License
+This project is covered under the BSD 3-clause license.
+
+
+
+Copyright © 2021. Chan Zuckerberg Biohub. All rights reserved.
