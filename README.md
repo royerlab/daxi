@@ -31,7 +31,7 @@ Correspondence: loic.royer@czbiohub.org, bin.yang@czbiohub.org
 
 All supplementary information related to the paper can be found here.
 
-Link to the Biorxiv preprint: https://www.biorxiv.org/content/10.1101/2020.09.22.309229v1
+Link to the Biorxiv preprint: https://doi.org/10.1101/2020.09.22.309229
 
 
 ## Repo Contents
@@ -40,7 +40,7 @@ Link to the Biorxiv preprint: https://www.biorxiv.org/content/10.1101/2020.09.22
 for 3D printing.
 
 * Part list: a list of all the necessary parts used to built the microscope. 
-A rough estimate of the cost to the microscope is about $130k.
+A rough estimate of the cost of the microscope is about $130k.
 
 * Control code: to control the microscope. A Micro-Manager script to setup the data acquisition and 
 a python module to programme a NI DAQ system to synchronize other devices during the acquisition. 
