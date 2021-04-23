@@ -46,21 +46,11 @@ If you use the hardwar designs or software code, please cite us:
 
 [High-Resolution, Large Imaging Volume, and Multi-View Single Objective Light-Sheet Microscopy](https://doi.org/10.1101/2020.09.22.309229)
 
-Bin Yang1*, Merlin Lange1, Alfred Millett-Sikking2, Ahmet Can Solak1, Shruthi Vijaykumar1, Wanpeng Wang3, 
-Hirofumi Kobayashi1, Matthew N Mccarroll4, Lachlan W Whitehead5;6, Reto P Fiolka7;8, Thomas B. Kornberg3, 
-Andrew G York2, Loic A. Royer1*
-
-1. Chan Zuckerberg Biohub, San Francisco, USA
-2. Calico Life Sciences LLC, South San Francisco, USA
-3. Cardiovascular Research Institute, University of California, San Francisco, CA 94143
-4. Institute for Neurodegenerative Diseases, University of California, San Francisco, CA, 94143, USA.
-5. The Walter and Eliza Hall Institute of Medical Research, Parkville, VIC, Australia
-6. Department of Medical Biology, The University of Melbourne, Parkville, VIC, Australia
-7. Department of Cell Biology, University of Texas Southwestern Medical Center, Dallas, United States
-8. Lyda Hill Department of Bioinformatics, University of Texas Southwestern Medical Center, Dallas, United States
+Bin Yang1*, Merlin Lange, Alfred Millett-Sikking, Ahmet Can Solak, Shruthi Vijaykumar, Wanpeng Wang, 
+Hirofumi Kobayashi, Matthew N Mccarroll, Lachlan W Whitehead, Reto P Fiolka, Thomas B. Kornberg, 
+Andrew G York, Loic A. Royer*
 
 Link to the Biorxiv preprint:  https://doi.org/10.1101/2020.09.22.309229
-
 
 
 ## License
