@@ -1,6 +1,6 @@
 # DaXi: High-Resolution, Large Imaging Volume, and Multi-View Single Objective Light-Sheet Microscope
 
-![image](https://user-images.githubusercontent.com/1870994/115829677-1c617a80-a3c4-11eb-9011-200e3e0ab435.png)
+![DaXi_blender_render](https://user-images.githubusercontent.com/1870994/223275335-062fcd03-7a1a-4cdb-8c76-c9e8312d6466.png)
 
 The DaXi microscope is a single-objective light-sheet microscope design that combines the advantages of standard single-objective microscopes with the speed, coverage, resolution, and gentleness of light-sheet microscopes. Its main features include a wider field of view and high-resolution imaging via a custom remote focusing objective, fast volumetric imaging over larger volumes without compromising image quality or necessitating tiled acquisition, fuller image coverage for large samples via multi-view imaging, and higher throughput multi-well imaging via remote coverslip placement. The microscope achieves a resolution of 450 nm laterally and 2 μm axially over an imaging volume of 3,000 × 800 × 300 μm, making it suitable for imaging large living samples such as developing embryos. The DaXi microscope also improves sample mounting ergonomics and can be converted from upright to inverted using remote focusing. The microscope has been successfully used to image various systems, including Drosophila egg chamber development, zebrafish whole-brain activity, and zebrafish embryonic development, up to nine embryos at a time.
 
