@@ -60,3 +60,5 @@ Link to the Biorxiv preprint:  https://doi.org/10.1101/2020.09.22.309229
 This project is covered under the BSD 3-clause license.
 
 Copyright © 2021. Chan Zuckerberg Biohub. All rights reserved.
+
+![image](https://user-images.githubusercontent.com/1870994/115829677-1c617a80-a3c4-11eb-9011-200e3e0ab435.png)
