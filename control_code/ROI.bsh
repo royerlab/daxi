@@ -1,0 +1,13 @@
+// roi format: (x0, y0, x_len, y_len)
+int x_len = 2048;  // desired x widht
+int y_len = 1024;  // desired y widht
+//int y_len = 1300;  // desired y widht
+
+int x_lim = 2048;  //max pixel along x
+int y_lim = 2048;  //max pixel along y
+
+int x0 = (x_lim - x_len) / 2;
+int y0 = (y_lim - y_len) / 2;
+
+mmc.setROI(x0, y0, x_len, y_len);  
+print(mmc.getROI());
