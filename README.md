@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/297848396.svg)](https://zenodo.org/doi/10.5281/zenodo.13761283)
+
 # DaXi: High-Resolution, Large Imaging Volume, and Multi-View Single Objective Light-Sheet Microscope
 
 ![DaXi_blender_render](https://user-images.githubusercontent.com/1870994/223275335-062fcd03-7a1a-4cdb-8c76-c9e8312d6466.png)
